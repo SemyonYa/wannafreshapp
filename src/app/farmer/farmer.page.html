@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <h1>farmer</h1>
+      <p>
+        <ion-button color="primary" [routerLink]="['/home']">
+          <ion-icon name="home" slot="icon-only"></ion-icon>
+        </ion-button>
+      </p>
+      <p>
+        <a [routerLink]="['/farmer/description']"><b>description</b></a>
+        <a [routerLink]="['/farmer/goods']"><b>goods</b></a>
+        <a [routerLink]="['/farmer/posts']"><b>posts</b></a>
+        <a [routerLink]="['/farmer/promos']"><b>promos</b></a>
+        <a [routerLink]="['/farmer/videos']"><b>videos</b></a>
+      </p>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  farmer
+  <ion-router-outlet> </ion-router-outlet>
+</ion-content>
