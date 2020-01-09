@@ -17,7 +17,7 @@ export class DataService {
     this.http.get(environment.host + '/data/farmers')
       .pipe(
         map(
-          (data: any[]) => data.map(f => new Farmer(f.id, f.name, f.description, f.email, f.min_costs, f.delivery, f.img))
+          (data: any[]) => data.map(f => new Farmer(f.id, f.name, f.description, f.email, f.min_cost, f.delivery, f.img))
         )
       )
       .subscribe(

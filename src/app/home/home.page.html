@@ -15,5 +15,24 @@
   <ion-button color="primary" [routerLink]="['/cart']">
     <ion-icon name="cart" slot="icon-only"></ion-icon>
   </ion-button>
-  <img src="/assets/icon/back-alt.svg" alt="">
+  <div class="farmers-ribbon">
+    <ion-slides pager="true" [options]="{slidesPerView: 3}">
+      <ion-slide *ngFor="let farmer of farmers$.value">
+        <ng-container *ngTemplateOutlet="farmerItem; context: {farmerId: farmer}"></ng-container>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <!-- <img src="/assets/icon/back-alt.svg" alt=""> -->
 </ion-content>
+
+<ng-template let-farmer="farmerId" #farmerItem>
+  <ion-card text-center>
+    <ion-card-header>
+      <ion-card-title>{{farmer.name}}</ion-card-title>
+      <ion-card-subtitle><b *ngIf="farmer.minCost"> {{farmer.minCost}} руб. </b></ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      {{farmer.delivery}}
+    </ion-card-content>
+  </ion-card>
+</ng-template>

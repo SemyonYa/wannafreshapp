@@ -1,10 +1,18 @@
 .banner {
     width: 100%;
-    height: 30vw;
+    height: 20vw;
     background-image: url('/assets/icon/back-alt.svg');
     background-position: center center;
     background-size: cover;
+    box-shadow: inset 0 0 10px 2px rgba(0,0,0,.4);
 }
+
+// .farmers-ribbon {
+//     display: flex;
+//     justify-content: center;
+//     align-items: flex-start;
+//     flex-wrap: wrap;
+// }
 
 @media (orientation: portrait) {
     .banner {

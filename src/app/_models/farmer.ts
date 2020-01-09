@@ -19,12 +19,12 @@ export class Farmer {
     private posts: Post[];
     private videos: Video[];
 
-    constructor(id: string, name: string, description: string, email: string, minCosts: string, delivery: string, img: string) {
+    constructor(id: string, name: string, description: string, email: string, minCost: string, delivery: string, img: string) {
         this.id = Number.parseInt(id);
         this.name = name;
         this.description = description;
         this.email = email;
-        this.minCost = Number.parseInt(minCosts);
+        this.minCost = Number.parseInt(minCost);
         this.delivery = delivery;
         this.img = HelpMe.getImg(img, id);
         this.thumb = HelpMe.getThumb(img, id);
