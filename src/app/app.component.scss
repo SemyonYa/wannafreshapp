@@ -1,0 +1,33 @@
+.title-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .cart {
+        position: fixed;
+        height: 50px;
+        width: 50px;
+        top: 5px;
+        right: 5px;
+        background-image: url('/assets/icon/cart-ico.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+        justify-self: end;
+
+        .counter {
+            position: absolute;
+            right: 0px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(var(--ion-color-primary-rgb), .9);
+            color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            box-shadow: 0 0 5px 0 rgba(0,0,0,.4);
+        }
+    }
+}

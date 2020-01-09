@@ -1,3 +1,17 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title text-center [ngStyle]="{paddingTop: '10px'}">
+        <div class="title-block">
+          <img src="/assets/icon/logo.svg" alt="" [ngStyle]="{height: '50px'}">
+          <div class="cart">
+            <span class="counter">22</span>
+          </div>
+        </div>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-router-outlet></ion-router-outlet>
+  </ion-content>
 </ion-app>
