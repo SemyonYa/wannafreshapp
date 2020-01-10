@@ -1,3 +1,22 @@
+* {
+    outline: none;
+}
+
+:root {
+    /**  CUSTOM  **/
+    // --ion-font-family: 'Exo 2', sans-serif;
+    // --ion-font-family: 'Lobster Two', cursive;
+    // --ion-font-family: 'Philosopher', sans-serif;
+    // --ion-font-family: 'Didact Gothic', sans-serif;
+    // --ion-font-family: 'Anonymous Pro', monospace;
+    --ion-font-family: 'Kurale', serif;
+
+    // --ion-font-family: 'Cormorant', serif;
+    // --ion-font-family: 'Cormorant Infant', serif;
+    // --ion-font-family: 'Cormorant SC', serif;
+    // --ion-font-family: 'Cormorant Unicase', serif;
+}
+
 .title-block {
     display: flex;
     justify-content: center;

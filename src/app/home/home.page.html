@@ -1,29 +1,70 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      
-    </ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content>
-  <div class="banner"></div>
-  <h1>Home </h1>
+  <div class="banner">
+    <div class="banner-inner">
+      <h1>Wanna Fresh</h1>
+      <h2>Доставка продуктов с фермерских хозяйств</h2>
+      <h3>ВКУСНО и ПОЛЕЗНО</h3>
+    </div>
+  </div>
+
+  <!-- SEARCH BLOCK -->
+  <div class="search-block">
+    <ion-item>
+      <ion-label position="floating">Поиск по товарам и фермерским хозяйствам</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+  </div>
+
+  <!-- FARMERS RIBBON -->
+  <div class="farmers-ribbon">
+    <ion-slides mode="ios" scrollbar="true" pager="true" [options]="{slidesPerView: 4}" class="visible-4">
+      <ion-slide *ngFor="let farmer of farmers$.value">
+        <ng-container *ngTemplateOutlet="farmerItem; context: {farmerId: farmer}"></ng-container>
+      </ion-slide>
+    </ion-slides>
+    <ion-slides mode="ios" scrollbar="true" pager="true" [options]="{slidesPerView: 3}" class="visible-3">
+      <ion-slide *ngFor="let farmer of farmers$.value">
+        <ng-container *ngTemplateOutlet="farmerItem; context: {farmerId: farmer}"></ng-container>
+      </ion-slide>
+    </ion-slides>
+    <ion-slides mode="ios" scrollbar="true" pager="true" [options]="{slidesPerView: 2}" class="visible-2">
+      <ion-slide *ngFor="let farmer of farmers$.value">
+        <ng-container *ngTemplateOutlet="farmerItem; context: {farmerId: farmer}"></ng-container>
+      </ion-slide>
+    </ion-slides>
+    <ion-slides mode="ios" scrollbar="true" pager="true" [options]="{slidesPerView: 1}" class="visible-1">
+      <ion-slide *ngFor="let farmer of farmers$.value">
+        <ng-container *ngTemplateOutlet="farmerItem; context: {farmerId: farmer}"></ng-container>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <!-- PROMOS RIBBON -->
+  <div class="promos-ribbon">
+    <ion-slides pager="true" [options]="{slidesPerView: 4}">
+      <ion-slide>
+        <h1> Promo #1 </h1>
+      </ion-slide>
+      <ion-slide>
+        <h1> Promo #2 </h1>
+      </ion-slide>
+      <ion-slide>
+        <h1> Promo #3 </h1>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <!-- CATEGORY BLOCK -->
+  <div class="categories"></div>
+
   <ion-button color="primary" [routerLink]="['/farmer']">
     <ion-icon name="paw" slot="icon-only"></ion-icon>
   </ion-button>
   <ion-button color="primary" [routerLink]="['/cart']">
     <ion-icon name="cart" slot="icon-only"></ion-icon>
   </ion-button>
-  <div class="farmers-ribbon">
-    <ion-slides pager="true" [options]="{slidesPerView: 3}">
-      <ion-slide *ngFor="let farmer of farmers$.value">
-        <ng-container *ngTemplateOutlet="farmerItem; context: {farmerId: farmer}"></ng-container>
-      </ion-slide>
-    </ion-slides>
-  </div>
-  <!-- <img src="/assets/icon/back-alt.svg" alt=""> -->
 </ion-content>
+
 
 <ng-template let-farmer="farmerId" #farmerItem>
   <ion-card text-center>
