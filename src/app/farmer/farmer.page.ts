@@ -22,14 +22,6 @@ export class FarmerPage implements OnInit {
       .subscribe(
         (data: Farmer[]) => {
           this.farmer = data.find(f => f.id == this.id);
-          // if (this.farmer) {
-          //   this.dataService.getFarmerGoods(this.id)
-          //     .subscribe(
-          //       (data: Good[]) => {
-          //         this.farmer.fillGoods(data);
-          //       }
-          //     );
-          // }
         }
       );
   }

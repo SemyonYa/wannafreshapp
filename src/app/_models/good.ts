@@ -6,9 +6,9 @@ export class Good {
     brief: string;
     description: string;
     farmerId: number;
-    farmerName: string;
-    categoryId: number;
-    categoryName: string;
+    // farmerName: string;
+    // categoryId: number;
+    // categoryName: string;
     price: number;
     quantity: number;
     measure: string;
@@ -17,15 +17,15 @@ export class Good {
 
     private quantityInCart: number;
 
-    constructor(id: string, name: string, brief: string, description: string, farmerId: string, farmerName: string, categoryId: string, categoryName: string, price: string, quantity: string, measure: string, img: string) {
+    constructor(id: string, name: string, brief: string, description: string, farmerId: string, price: string, quantity: string, measure: string, img: string) {
         this.id = Number.parseInt(id);
         this.name = name;
         this.brief = brief;
         this.description = description;
         this.farmerId = Number.parseInt(farmerId);
-        this.farmerName = farmerName;
-        this.categoryId = Number.parseInt(categoryId);
-        this.categoryName = categoryName;
+        // this.farmerName = farmerName;
+        // this.categoryId = Number.parseInt(categoryId);
+        // this.categoryName = categoryName;
         this.price = Number.parseInt(price);
         this.quantity = Number.parseInt(quantity);
         this.measure = measure;

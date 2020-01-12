@@ -3,6 +3,8 @@ import { Good } from './good';
 import { Promo } from './promo';
 import { Post } from './post';
 import { Video } from './video';
+import { Category } from './category';
+import { BehaviorSubject } from 'rxjs';
 
 export class Farmer {
     id: number;
@@ -19,6 +21,9 @@ export class Farmer {
     private posts: Post[];
     private videos: Video[];
 
+    // categoryGoods: BehaviorSubject<Map<Category, Good[]>>;
+    categories: Category[];
+
     constructor(id: string, name: string, description: string, email: string, minCost: string, delivery: string, img: string) {
         this.id = Number.parseInt(id);
         this.name = name;
@@ -32,10 +37,20 @@ export class Farmer {
         this.promos = [];
         this.posts = [];
         this.videos = [];
+        // this.categoryGoods = new BehaviorSubject<Map<Category, Good[]>>(new Map<Category, Good[]>());
+        this.categories = [];
     }
 
-    fillGoods(items: Good[]) {
-        this.goods = items;
+    // fillCatgoryGoods(cgs: Map<Category, Good[]>) {
+    //     this.categoryGoods.next(cgs);
+    // }
+
+    // fillGoods(items: Good[]) {
+    //     this.goods = items;
+    // }
+
+    fillCategories(cs: Category[]) {
+        this.categories = cs;
     }
 
     fillPromos(items: Promo[]) {

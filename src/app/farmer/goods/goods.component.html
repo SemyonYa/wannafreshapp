@@ -1,9 +1,13 @@
-<ion-content>
-  goods works! ({{farmerId}})
-  <div class="category-block" *ngFor="let category of categories">
+<ion-content *ngIf="farmer;else loading">
+  goods works! ({{farmer.id}})
+  <div class="category-block" *ngFor="let category of farmer.categories">
     <h3 [ngStyle]="{color: 'green'}">{{category.name}}</h3>
     <div class="category-block-goods">
       <div class="category-block-goods-item" *ngFor="let good of category.goods">{{good.name}}</div>
     </div>
   </div>
 </ion-content>
+
+<ng-template #loading>
+  <div class="alert">loading...</div>
+</ng-template>

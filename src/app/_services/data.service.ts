@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Farmer } from '../_models/farmer';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
@@ -12,25 +12,30 @@ import { Good } from '../_models/good';
   providedIn: 'root'
 })
 export class DataService {
+  // farmers: Farmer[] = [];
   farmers$ = new BehaviorSubject<Farmer[]>([]);
   categories$ = new BehaviorSubject<Category[]>([]);
   // promos$ = new BehaviorSubject<Promo[]>([]);
 
   constructor(private http: HttpClient) { }
 
-  getFarmers() {
-    this.http.get(environment.host + '/data/farmers')
+  getFarmers(): Observable<Farmer[]> {
+    return this.http.get(environment.host + '/data/farmers')
       .pipe(
         map(
           (data: any[]) => data.map(f => new Farmer(f.id, f.name, f.description, f.email, f.min_cost, f.delivery, f.img))
         )
-      )
-      .subscribe(
-        (data: Farmer[]) => {
-          this.farmers$.next(data);
-        }
       );
+    // .subscribe(
+    //   (data: Farmer[]) => {
+    //     this.farmers$.next(data);
+    //   }
+    // );
   }
+
+  // setFarmers(fs: Farmer[]) {
+  //   this.farmers = fs;
+  // }
 
   getCategories() {
     this.http.get(environment.host + '/data/categories')
@@ -55,31 +60,42 @@ export class DataService {
       );
   }
 
-  getFarmerGoods(id: number) {
-    return this.http.get(environment.host + '/data/farmer-goods?farmer_id=' + id)
+  getFarmersFull() {
+    this.http.get(environment.host + '/data/farmers-full')
       .pipe(
         map(
-          (data: any[]) => data.map(g => new Good(g.id, g.name, g.brief, g.description, g.farmer_id, g.farmer_name, g.category_id, g.category_name, g.price, g.quantity, g.measure, g.img))
+          (data: any[]) => {
+            return data.map(
+              item => {
+                const farmer = new Farmer(item.farmer.id, item.farmer.name, item.farmer.description, item.farmer.email, item.farmer.min_cost, item.farmer.delivery, item.farmer.img);
+                // const categoryGoods = new Map<Category, Good[]>();
+                const categories: Category[] = [];
+                (item.categories as any[]).forEach(
+                  item2 => {
+                    const category = new Category(item2.category.id, item2.category.name, item2.category.img);
+                    const goods: Good[] = [];
+                    (item2.goods as any[]).forEach(
+                      g => {
+                        const good = new Good(g.id, g.name, g.brief, g.description, g.farmer_id, g.price, g.quantity, g.measure, g.img);
+                        goods.push(good);
+                      }
+                    );
+                    category.fillGoods(goods);
+                    categories.push(category);
+                    // categoryGoods.set(category, goods);
+                  }
+                );
+                farmer.fillCategories(categories);
+                return farmer;
+              }
+            );
+          }
         )
+      )
+      .subscribe(
+        (data: Farmer[]) => {
+          this.farmers$.next(data);
+        }
       );
-      // .subscribe(
-      //   (data: Good[]) => {
-      //     const fs = this.farmers$.value;
-      //     fs.find(f => f.id == id).fillGoods(data);
-      //     this.farmers$.next(fs);
-      //   }
-      // );
   }
-
-  // getFarmer(id: number): Farmer {
-  //   // console.log(this.farmers$.value);
-  //   let farmer: Farmer = null;
-  //   this.farmers$.subscribe(
-  //     (data) => {
-  //       farmer = data.find(f => f.id === id);
-  //     }
-  //   );
-  //   return farmer;
-  //   // return this.farmers$.value.find(f => f.id === id);
-  // }
 }

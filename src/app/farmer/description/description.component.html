@@ -1,3 +1,8 @@
-<p>
-  description works!
-</p>
+<ion-content text-center>
+  <h2>{{farmer?.name}}</h2>
+  <img src="{{farmer?.img}}" alt="" width="200">
+  <h4>Сумма минимальной покупки: <b> {{farmer?.minCost}} руб. </b></h4>
+  <h5>Информация о доставке:</h5>
+  <p><b>{{farmer?.delivery}}</b></p>
+  <p>{{farmer?.description}}</p>
+</ion-content>

@@ -17,22 +17,22 @@
   <div class="farmers-ribbon">
     <h3 text-center>Фермерские хозяйства</h3>
     <ion-slides mode="ios" pager="true" [options]="{slidesPerView: 4}" class="visible-4">
-      <ion-slide *ngFor="let farmer of farmers$.value">
+      <ion-slide *ngFor="let farmer of farmers">
         <ng-container *ngTemplateOutlet="farmerItem; context: {farmerId: farmer}"></ng-container>
       </ion-slide>
     </ion-slides>
     <ion-slides mode="ios" pager="true" [options]="{slidesPerView: 3}" class="visible-3">
-      <ion-slide *ngFor="let farmer of farmers$.value">
+      <ion-slide *ngFor="let farmer of farmers">
         <ng-container *ngTemplateOutlet="farmerItem; context: {farmerId: farmer}"></ng-container>
       </ion-slide>
     </ion-slides>
     <ion-slides mode="ios" pager="true" [options]="{slidesPerView: 2}" class="visible-2">
-      <ion-slide *ngFor="let farmer of farmers$.value">
+      <ion-slide *ngFor="let farmer of farmers">
         <ng-container *ngTemplateOutlet="farmerItem; context: {farmerId: farmer}"></ng-container>
       </ion-slide>
     </ion-slides>
     <ion-slides mode="ios" pager="true" [options]="{slidesPerView: 1}" class="visible-1">
-      <ion-slide *ngFor="let farmer of farmers$.value">
+      <ion-slide *ngFor="let farmer of farmers">
         <ng-container *ngTemplateOutlet="farmerItem; context: {farmerId: farmer}"></ng-container>
       </ion-slide>
     </ion-slides>
@@ -55,7 +55,6 @@
   </div>
 
   <!-- CATEGORY BLOCK -->
-
   <div class="categories-wrap">
     <h3>Поиск фермерских хозяйств и акций по категории продуктов</h3>
     <div class="categories">

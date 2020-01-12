@@ -12,13 +12,19 @@ import { Promo } from '../_models/promo';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  farmers$: BehaviorSubject<Farmer[]>;
+  farmers: Farmer[] = [];
   categories$: BehaviorSubject<Category[]>;
   promos: Promo[] = [];
   constructor(private dataService: DataService, private cartService: CartService) { }
 
   ngOnInit() {
-    this.farmers$ = this.dataService.farmers$;
+    this.dataService.farmers$
+      .subscribe(
+        (data: Farmer[]) => {
+          this.farmers = data;
+        }
+      );
+    this.dataService.getCategories();
     this.categories$ = this.dataService.categories$;
     this.dataService.getPromos()
       .subscribe(
