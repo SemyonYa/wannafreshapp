@@ -26,6 +26,8 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.dataService.getFarmers();
+      this.dataService.getCategories();
+      console.log('app.component');
     });
   }
 }

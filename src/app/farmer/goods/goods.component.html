@@ -1,3 +1,9 @@
-<p>
-  goods works!
-</p>
+<ion-content>
+  goods works! ({{farmerId}})
+  <div class="category-block" *ngFor="let category of categories">
+    <h3 [ngStyle]="{color: 'green'}">{{category.name}}</h3>
+    <div class="category-block-goods">
+      <div class="category-block-goods-item" *ngFor="let good of category.goods">{{good.name}}</div>
+    </div>
+  </div>
+</ion-content>

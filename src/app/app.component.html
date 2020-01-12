@@ -3,8 +3,8 @@
     <ion-toolbar>
       <ion-title text-center [ngStyle]="{paddingTop: '10px'}">
         <div class="title-block">
-          <img src="/assets/icon/logo.svg" alt="" [ngStyle]="{height: '50px'}">
-          <div class="cart">
+          <img src="/assets/icon/logo.svg" [routerLink]="['/home']" alt="" [ngStyle]="{height: '50px'}">
+          <div class="cart" [routerLink]="['/cart']">
             <span class="counter">22</span>
           </div>
         </div>

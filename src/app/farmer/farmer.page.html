@@ -1,24 +1,50 @@
-<ion-header>
+<ion-header text-center>
   <ion-toolbar>
-    <ion-title>
-      <h1>farmer</h1>
-      <p>
-        <ion-button color="primary" [routerLink]="['/home']">
-          <ion-icon name="home" slot="icon-only"></ion-icon>
-        </ion-button>
-      </p>
-      <p>
-        <a [routerLink]="['/farmer/description']"><b>description</b></a>
-        <a [routerLink]="['/farmer/goods']"><b>goods</b></a>
-        <a [routerLink]="['/farmer/posts']"><b>posts</b></a>
-        <a [routerLink]="['/farmer/promos']"><b>promos</b></a>
-        <a [routerLink]="['/farmer/videos']"><b>videos</b></a>
-      </p>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="farmer">
+      <div class="title-block">
+        <div class="title-block-logo" [ngStyle]="{backgroundImage: 'url(' + farmer.thumb + ')'}"></div>
+        <div class="title-block-info">
+          <h2>{{farmer.name}}</h2>
+          <p>Минимальная стоимость заказа:</p>
+          <p><b>{{farmer.minCost}} руб.</b></p>
+        </div>
+      </div>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  farmer
-  <ion-router-outlet> </ion-router-outlet>
+  <!-- <ion-router-outlet></ion-router-outlet> -->
+  <ion-tabs>
+    <ion-tab-bar slot="top">
+      <ion-tab-button tab="description">
+        <ion-icon name="information-circle"></ion-icon>
+        <ion-label>Описание</ion-label>
+      </ion-tab-button>
+      
+      <ion-tab-button tab="goods">
+        <ion-icon name="cart"></ion-icon>
+        <ion-label>Товары</ion-label>
+        <ion-badge>5</ion-badge>
+      </ion-tab-button>
+
+      <ion-tab-button tab="posts">
+        <ion-icon name="text"></ion-icon>
+        <ion-label>Блог</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="promos">
+        <ion-icon name="gift"></ion-icon>
+        <ion-label>Акции</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="videos">
+        <ion-icon name="videocam"></ion-icon>
+        <ion-label>Видео</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>

@@ -10,7 +10,7 @@ import { VideosComponent } from './videos/videos.component';
 
 const routes: Routes = [
   {
-    path: 'farmer',
+    path: 'farmer/:id',
     component: FarmerPage,
     children: [
       { path: '', redirectTo: 'goods', pathMatch: 'full' },

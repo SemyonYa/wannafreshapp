@@ -9,71 +9,80 @@
 
   <!-- SEARCH BLOCK -->
   <div class="search-block">
-    <ion-item>
-      <ion-label position="floating">Поиск по товарам и фермерским хозяйствам</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
+    <ion-input placeholder="Поиск по товарам и фермерским хозяйствам" text-center></ion-input>
+    <div class="result"></div>
   </div>
 
   <!-- FARMERS RIBBON -->
   <div class="farmers-ribbon">
-    <ion-slides mode="ios" scrollbar="true" pager="true" [options]="{slidesPerView: 4}" class="visible-4">
+    <h3 text-center>Фермерские хозяйства</h3>
+    <ion-slides mode="ios" pager="true" [options]="{slidesPerView: 4}" class="visible-4">
       <ion-slide *ngFor="let farmer of farmers$.value">
         <ng-container *ngTemplateOutlet="farmerItem; context: {farmerId: farmer}"></ng-container>
       </ion-slide>
     </ion-slides>
-    <ion-slides mode="ios" scrollbar="true" pager="true" [options]="{slidesPerView: 3}" class="visible-3">
+    <ion-slides mode="ios" pager="true" [options]="{slidesPerView: 3}" class="visible-3">
       <ion-slide *ngFor="let farmer of farmers$.value">
         <ng-container *ngTemplateOutlet="farmerItem; context: {farmerId: farmer}"></ng-container>
       </ion-slide>
     </ion-slides>
-    <ion-slides mode="ios" scrollbar="true" pager="true" [options]="{slidesPerView: 2}" class="visible-2">
+    <ion-slides mode="ios" pager="true" [options]="{slidesPerView: 2}" class="visible-2">
       <ion-slide *ngFor="let farmer of farmers$.value">
         <ng-container *ngTemplateOutlet="farmerItem; context: {farmerId: farmer}"></ng-container>
       </ion-slide>
     </ion-slides>
-    <ion-slides mode="ios" scrollbar="true" pager="true" [options]="{slidesPerView: 1}" class="visible-1">
+    <ion-slides mode="ios" pager="true" [options]="{slidesPerView: 1}" class="visible-1">
       <ion-slide *ngFor="let farmer of farmers$.value">
         <ng-container *ngTemplateOutlet="farmerItem; context: {farmerId: farmer}"></ng-container>
       </ion-slide>
     </ion-slides>
+    <h4 class="view-all-farmers" [routerLink]="['/farmer']">Посмотреть все...</h4>
   </div>
 
   <!-- PROMOS RIBBON -->
   <div class="promos-ribbon">
-    <ion-slides pager="true" [options]="{slidesPerView: 4}">
-      <ion-slide>
-        <h1> Promo #1 </h1>
-      </ion-slide>
-      <ion-slide>
-        <h1> Promo #2 </h1>
-      </ion-slide>
-      <ion-slide>
-        <h1> Promo #3 </h1>
+    <h3 text-center>
+      Акции
+      <ion-icon name="gift"></ion-icon>
+    </h3>
+    <ion-slides pager="true" [options]="{slidesPerView: 5}">
+      <ion-slide *ngFor="let promo of promos">
+        <div class="promos-item" [ngStyle]="{backgroundImage: 'url(' + promo.img + ')'}">
+          <span> {{promo.title}} </span>
+        </div>
       </ion-slide>
     </ion-slides>
   </div>
 
   <!-- CATEGORY BLOCK -->
-  <div class="categories"></div>
 
-  <ion-button color="primary" [routerLink]="['/farmer']">
-    <ion-icon name="paw" slot="icon-only"></ion-icon>
-  </ion-button>
-  <ion-button color="primary" [routerLink]="['/cart']">
-    <ion-icon name="cart" slot="icon-only"></ion-icon>
-  </ion-button>
+  <div class="categories-wrap">
+    <h3>Поиск фермерских хозяйств и акций по категории продуктов</h3>
+    <div class="categories">
+      <div class="categories-item" *ngFor="let category of categories$.value">
+        <div class="categories-item-img" [ngStyle]="{backgroundImage: 'url(' + category.img + ')'}"></div>
+        <h4>{{category.name}}</h4>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="home-footer">
+    <div class="home-footer-inner">
+      <h4>Footer Info</h4>
+      <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti et possimus similique, voluptates neque libero
+      eos voluptas quibusdam nulla dicta enim assumenda harum esse aliquid rem repellendus odio. Nam, nostrum.</p>
+    </div>
+  </div>
 </ion-content>
 
-
+<!-- TEMPLATES -->
 <ng-template let-farmer="farmerId" #farmerItem>
-  <ion-card text-center>
+  <ion-card text-center class="farmer-template-card" [routerLink]="['/farmer/' + farmer.id]">
+    <img [src]="farmer.img" alt="">
     <ion-card-header>
       <ion-card-title>{{farmer.name}}</ion-card-title>
       <ion-card-subtitle><b *ngIf="farmer.minCost"> {{farmer.minCost}} руб. </b></ion-card-subtitle>
     </ion-card-header>
-    <ion-card-content>
-      {{farmer.delivery}}
-    </ion-card-content>
   </ion-card>
 </ng-template>

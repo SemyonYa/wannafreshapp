@@ -3,6 +3,8 @@ import { DataService } from '../_services/data.service';
 import { CartService } from '../_services/cart.service';
 import { BehaviorSubject } from 'rxjs';
 import { Farmer } from '../_models/farmer';
+import { Category } from '../_models/category';
+import { Promo } from '../_models/promo';
 
 @Component({
   selector: 'app-home',
@@ -11,9 +13,18 @@ import { Farmer } from '../_models/farmer';
 })
 export class HomePage implements OnInit {
   farmers$: BehaviorSubject<Farmer[]>;
-  constructor(private dataService: DataService, private cartService: CartService) {}
+  categories$: BehaviorSubject<Category[]>;
+  promos: Promo[] = [];
+  constructor(private dataService: DataService, private cartService: CartService) { }
 
   ngOnInit() {
     this.farmers$ = this.dataService.farmers$;
+    this.categories$ = this.dataService.categories$;
+    this.dataService.getPromos()
+      .subscribe(
+        (data: Promo[]) => {
+          this.promos = data;
+        }
+      );
   }
 }
