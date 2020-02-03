@@ -16,12 +16,13 @@ export class Farmer {
     img: string;
     thumb: string;
 
-    private goods: Good[];
-    private promos: Promo[];
-    private posts: Post[];
-    private videos: Video[];
+    goodCounter: number;
 
-    // categoryGoods: BehaviorSubject<Map<Category, Good[]>>;
+    // private goods: Good[];
+    promos: Promo[];
+    posts: Post[];
+    videos: Video[];
+
     categories: Category[];
 
     constructor(id: string, name: string, description: string, email: string, minCost: string, delivery: string, img: string) {
@@ -33,21 +34,12 @@ export class Farmer {
         this.delivery = delivery;
         this.img = HelpMe.getImg(img, id);
         this.thumb = HelpMe.getThumb(img, id);
-        this.goods = [];
+        this.goodCounter = 0;
         this.promos = [];
         this.posts = [];
         this.videos = [];
-        // this.categoryGoods = new BehaviorSubject<Map<Category, Good[]>>(new Map<Category, Good[]>());
         this.categories = [];
     }
-
-    // fillCatgoryGoods(cgs: Map<Category, Good[]>) {
-    //     this.categoryGoods.next(cgs);
-    // }
-
-    // fillGoods(items: Good[]) {
-    //     this.goods = items;
-    // }
 
     fillCategories(cs: Category[]) {
         this.categories = cs;

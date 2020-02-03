@@ -1,22 +1,18 @@
 <ion-header text-center>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button color="primary"></ion-back-button>
-    </ion-buttons>
-    <ion-title *ngIf="farmer">
-      <div class="title-block">
-        <div class="title-block-logo" [ngStyle]="{backgroundImage: 'url(' + farmer.thumb + ')'}"></div>
-        <div class="title-block-info">
-          <h2>{{farmer.name}}</h2>
-          <p>Минимальная стоимость заказа:</p>
-          <p><b>{{farmer.minCost}} руб.</b></p>
-        </div>
-      </div>
-    </ion-title>
-  </ion-toolbar>
+  <!-- <div class="farmer-back-btn">
+    <ion-back-button color="primary"></ion-back-button>
+  </div> -->
+  <div *ngIf="farmer" class="title-block">
+    <div class="title-block-logo" [ngStyle]="{backgroundImage: 'url(' + farmer.thumb + ')'}"></div>
+    <div class="title-block-info">
+      <h2>{{farmer.name}}</h2>
+      <p>Минимальная стоимость заказа:</p>
+      <p><b>{{farmer.minCost}} руб.</b></p>
+    </div>
+  </div>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="farmer">
   <!-- <ion-router-outlet></ion-router-outlet> -->
   <ion-tabs>
     <ion-tab-bar slot="top">
@@ -24,11 +20,11 @@
         <ion-icon name="information-circle"></ion-icon>
         <ion-label>Описание</ion-label>
       </ion-tab-button>
-      
+
       <ion-tab-button tab="goods">
         <ion-icon name="cart"></ion-icon>
         <ion-label>Товары</ion-label>
-        <ion-badge>5</ion-badge>
+        <ion-badge color="tertiary" [ngStyle]="{fontSize: '12px', color: '#fefefe'}">{{farmer.goodCounter}}</ion-badge>
       </ion-tab-button>
 
       <ion-tab-button tab="posts">

@@ -1,3 +1,24 @@
-<p>
-  post works!
-</p>
+<ion-content *ngIf="farmer;else loading">
+  <div class="wrap">
+    <div class="inner" text-center>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="/farmer/{{farmerId}}/posts" text="Все записи" color="primary" icon="arrow-back">
+          </ion-back-button>
+        </ion-buttons>
+      </ion-toolbar>
+      <h3>{{post.title}}</h3>
+      <div class="img" [ngStyle]="{backgroundImage: 'url(' + post.img + ')'}"></div>
+      <p><strong>{{post.subtitle}}</strong></p>
+      <p>{{post.description}}</p>
+      <ion-toolbar text-center>
+          <ion-back-button defaultHref="/farmer/{{farmerId}}/posts" text="Все записи" color="primary" icon="arrow-back">
+          </ion-back-button>
+      </ion-toolbar>
+    </div>
+  </div>
+</ion-content>
+
+<ng-template #loading>
+  <div class="alert">loading...</div>
+</ng-template>

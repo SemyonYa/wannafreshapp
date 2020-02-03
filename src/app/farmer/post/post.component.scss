@@ -1,0 +1,39 @@
+.wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 50px;
+
+    .inner {
+        width: 100%;
+        max-width: 1000px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        border-left: solid 1px var(--ion-color-primary);
+        border-right: solid 1px var(--ion-color-primary);
+        margin-top: 10px;
+        padding: 10px;
+
+        &>* {
+        }
+    }
+}
+
+h3 {
+    flex-basis: 100%;
+    flex-basis: 100%;
+}
+
+.img {
+    width: 400px;
+    height: 400px;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,.4);
+    flex-basis: unset;
+}

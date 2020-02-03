@@ -1,15 +1,17 @@
 <ion-app>
   <ion-header>
-    <ion-toolbar>
-      <ion-title text-center [ngStyle]="{paddingTop: '10px'}">
-        <div class="title-block">
-          <img src="/assets/icon/logo.svg" [routerLink]="['/home']" alt="" [ngStyle]="{height: '50px'}">
-          <div class="cart" [routerLink]="['/cart']">
-            <span class="counter">22</span>
-          </div>
+    <div text-center class="main-title">
+      <div class="title-block">
+        <span class="home">
+          <span *ngIf="isHome"></span>
+          <ion-icon name="home" color="primary" [routerLink]="['/home']" *ngIf="!isHome" @btnHomeAnimation></ion-icon>
+        </span>
+        <img src="/assets/icon/logo.svg" [routerLink]="['/home']" alt="" class="logo">
+        <div class="cart" [routerLink]="['/cart']">
+          <span class="counter">{{cartCounter}}</span>
         </div>
-      </ion-title>
-    </ion-toolbar>
+      </div>
+    </div>
   </ion-header>
   <ion-content>
     <ion-router-outlet></ion-router-outlet>

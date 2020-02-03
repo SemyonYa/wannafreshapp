@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Promo } from 'src/app/_models/promo';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-promo',
@@ -6,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./promo.component.scss'],
 })
 export class PromoComponent implements OnInit {
-
-  constructor() { }
+  @Input() promo: Promo;
+  constructor(private modalController: ModalController) { }
 
   ngOnInit() {}
+
+  close() {
+    this.modalController.dismiss();
+  }
 
 }

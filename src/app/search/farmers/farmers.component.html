@@ -1,0 +1,22 @@
+<ion-content text-center>
+  <h2 *ngIf="!full">Найденные фермерские хозяйства по запросу: <strong><em [ngStyle]="{color: 'var(--ion-color-primary)'}">{{text}}</em></strong></h2>
+  <h6 *ngIf="!full"><em>Найдены как совпадения в наименованиях фермерских хозяйств, так и фермерские хозяйства, продающие продукты с названиями, удовлетворяющими запросу</em></h6>
+  <h2 *ngIf="full">Все фермерские хозяйства</h2>
+  <div class="farmers" *ngIf="farmers.length > 0;else nothing">
+    <div class="farmers-item" *ngFor="let farmer of farmers" [routerLink]="['/farmer/' + farmer.id]">
+      <div class="farmers-item-img" [ngStyle]="{backgroundImage: 'url(' + farmer.img + ')'}"></div>
+      <h4>{{farmer.name}}</h4>
+    </div>
+  </div>
+  <!-- <h4>С товарами</h4>
+  <div class="farmers" *ngIf="farmers2.length > 0;else nothing">
+    <div class="farmers-item" *ngFor="let farmer of farmers2" [routerLink]="['/farmer/' + farmer.id]">
+      <div class="farmers-item-img" [ngStyle]="{backgroundImage: 'url(' + farmer.img + ')'}"></div>
+      <h4>{{farmer.name}}</h4>
+    </div>
+  </div> -->
+</ion-content>
+
+<ng-template #nothing>
+  <h3>Совпадений не найдено!</h3>
+</ng-template>

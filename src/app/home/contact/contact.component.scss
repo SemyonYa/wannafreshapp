@@ -1,0 +1,42 @@
+.inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // align-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+
+    &>* {
+        flex-basis: 100%;
+    }
+
+    h2 {
+        padding: 0 0 10px;
+        text-decoration: underline;
+        color: #555;
+        margin: 0;
+    }
+
+    h4 {
+        margin: 0;
+        color: var(--ion-color-secondary);
+        padding-top: 10px;
+    }
+
+    p {
+        margin: 0;
+        padding: 5px 20px;
+        color: #555;
+    }
+
+    ion-toolbar {
+        align-self: flex-start;
+    }
+
+    ion-button {
+        // margin-top: 40px;
+        align-self: flex-end;
+    }
+}

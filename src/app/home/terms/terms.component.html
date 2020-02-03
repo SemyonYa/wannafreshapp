@@ -1,0 +1,13 @@
+<ion-content>
+  <ion-toolbar text-right>
+    <ion-icon name="close" (click)="close()" class="modal-close-btn"></ion-icon>
+  </ion-toolbar>
+  <h3>Условия доставки и оплаты</h3>
+  <div class="text">
+    <p *ngFor="let item of items">{{item}}</p>
+  </div>
+  <ion-button (click)="close()" color="primary" fill="outline" expand="full" [ngStyle]="{marginBottom: '20px'}">
+    <ion-icon name="close"></ion-icon>
+    Закрыть
+  </ion-button>
+</ion-content>

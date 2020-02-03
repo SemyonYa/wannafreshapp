@@ -1,8 +1,17 @@
-<ion-content text-center>
-  <h2>{{farmer?.name}}</h2>
-  <img src="{{farmer?.img}}" alt="" width="200">
-  <h4>Сумма минимальной покупки: <b> {{farmer?.minCost}} руб. </b></h4>
-  <h5>Информация о доставке:</h5>
-  <p><b>{{farmer?.delivery}}</b></p>
-  <p>{{farmer?.description}}</p>
+<ion-content text-center *ngIf="farmer">
+  <div class="wrap">
+    <div class="inner">
+      <h2>{{farmer.name}}</h2>
+      <img src="{{farmer.img}}" alt="" width="200">
+      <h4>Сумма минимальной покупки: <b> {{farmer.minCost}} руб. </b></h4>
+      <div class="about">
+        <h3> О компании</h3>
+        <p>{{farmer.description}}</p>
+      </div>
+      <div class="delivery">
+        <h5>Информация о доставке:</h5>
+        <p><b>{{farmer.delivery}}</b></p>
+      </div>
+    </div>
+  </div>
 </ion-content>

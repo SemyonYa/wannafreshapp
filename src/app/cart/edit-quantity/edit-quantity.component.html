@@ -1,0 +1,30 @@
+<ion-content text-center>
+  <div class="img" [ngStyle]="{backgroundImage: 'url(' + goodInCart.thumb + ')'}"></div>
+  <h3>{{goodInCart.name}}</h3>
+  <div class="cart">
+    <div class="minus" (click)="minus()">-</div>
+    <div class="counter">{{goodInCart.quantityInCart}}</div>
+    <div class="plus" (click)="plus()">+</div>
+  </div>
+  <ion-toolbar>
+    <ion-button fill="outline" expand="full" color="danger" (click)="remove()">
+      <ion-icon name="trash" slot="start"></ion-icon>
+      Удалить
+    </ion-button>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-button fill="outline" expand="full" color="secondary" (click)="close()">
+      <ion-icon name="close" slot="start"></ion-icon>
+      Закрыть
+    </ion-button>
+  </ion-toolbar>
+  <!-- <ion-toolbar> 
+    <ion-button fill="outline" color="primary" (click)="minus()">
+      <ion-icon name="remove" slot="icon-only"></ion-icon>
+    </ion-button>  
+    <span [ngStyle]="{padding: '7px'}">{{goodInCart?.quantityInCart}}</span>
+    <ion-button color="primary" (click)="plus()">
+      <ion-icon name="add" slot="icon-only"></ion-icon>
+    </ion-button> 
+  </ion-toolbar> -->
+</ion-content>

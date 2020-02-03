@@ -1,0 +1,38 @@
+
+h6 {
+    color: var(--ion-color-secondary);
+}
+.farmers {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 15px;
+
+    &-item {
+        width: 300px;
+        height: 300px;
+        box-shadow: 0 0 10px 0 rgba(0,0,0,.25);
+        border-radius: 7px;
+        margin: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        align-content: flex-end;
+        flex-wrap: wrap;
+        cursor: pointer;
+
+        &-img {
+            width: 250px;
+            height: 250px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        h4 {
+            flex-basis: 100%;
+            text-align: center;
+        }
+    }
+}

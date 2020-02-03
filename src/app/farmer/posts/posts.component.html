@@ -1,3 +1,25 @@
-<p>
-  posts works!
-</p>
+<ion-content *ngIf="farmer;else loading">
+  <div class="wrap">
+    <div *ngIf="farmer.posts.length > 0;else nothing" class="inner" text-center>
+      <h2>Блог</h2>
+      <div *ngFor="let post of farmer.posts" class="post">
+        <h4>{{post.title}}</h4>
+        <p><strong>{{post.subtitle}}</strong></p>
+        <div class="post-img" [ngStyle]="{backgroundImage: 'url(' + post.thumb + ')'}"></div>
+        <p>{{post.description}}</p>
+        <ion-button color="primary" [routerLink]="[post.id]" fill="outline" class="more">
+          Поробнее...
+          <ion-icon name="more" slot="end"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ng-template #loading>
+  <div class="alert">loading...</div>
+</ng-template>
+
+<ng-template #nothing>
+  <h3 class="nothing">Пока нет ни одной записи в блоге...</h3>
+</ng-template>

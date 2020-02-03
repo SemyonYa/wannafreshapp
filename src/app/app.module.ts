@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -10,6 +11,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FarmerPageModule } from './farmer/farmer.module';
+import { CartPageModule } from './cart/cart.module';
+import { SearchPageModule } from './search/search.module';
 
 
 @NgModule({
@@ -20,7 +23,10 @@ import { FarmerPageModule } from './farmer/farmer.module';
     IonicModule.forRoot(), 
     AppRoutingModule,
     HttpClientModule,
-    FarmerPageModule
+    FarmerPageModule,
+    CartPageModule,
+    SearchPageModule,
+    BrowserAnimationsModule
   ],
   providers: [
     StatusBar,

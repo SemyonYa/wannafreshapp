@@ -1,3 +1,21 @@
-<p>
-  promos works!
-</p>
+<ion-content *ngIf="farmer; else loading">
+  <div class="wrap">
+    <div *ngIf="farmer.promos.length > 0;else nothing" class="inner">
+      <h2>Акции</h2>
+      <div class="promos">
+        <div *ngFor="let promo of farmer.promos" (click)="show(promo)" class="promo">
+          <div class="promo-img" [ngStyle]="{backgroundImage: 'url(' + promo.thumb + ')'}"></div>
+          <h4>{{promo.title}}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ng-template #loading>
+  <div class="alert">loading...</div>
+</ng-template>
+
+<ng-template #nothing>
+  <h3 class="nothing">Пока нет ни одной опубликованной акции...</h3>
+</ng-template>

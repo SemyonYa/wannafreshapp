@@ -1,3 +1,18 @@
-<p>
-  good works!
-</p>
+<ion-content text-center>
+  <div class="img" [ngStyle]="{backgroundImage: 'url(' + good.img + ')'}"></div>
+  <div class="wrap">
+    <h2>{{good.name}}</h2>
+    <div class="cart">
+      <div class="minus" (click)="toCart('minus')">-</div>
+      <div class="counter">{{good.quantityInCart}}</div>
+      <div class="plus" (click)="toCart('plus')">+</div>
+    </div>
+  </div>
+  <h4>{{good.price}} руб. за {{good.quantity + ' ' + good.measure}}</h4>
+  <p class="brief">{{good.brief}}</p>
+  <div class="description">{{good.description}}</div>
+  <ion-button color="tertiary" (click)="hide()" class="close-modal" fill="outline">
+    <ion-icon name="close" slot="icon-only"></ion-icon>
+  </ion-button>
+  <!-- <pre>{{good | json}}</pre> -->
+</ion-content>

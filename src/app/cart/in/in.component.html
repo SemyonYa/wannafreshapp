@@ -1,0 +1,54 @@
+<ion-content>
+  <div class="wrap">
+    <div class="inner">
+
+      <div class="cart-title">
+        <h1>Корзина</h1>
+        <!-- <ion-button fill="outline" color="danger" (click)="clear()" class="buttons">
+          <ion-icon name="trash" slot="icon-only"></ion-icon>
+        </ion-button> -->
+      </div>
+      <div *ngIf="goodsInCart.length > 0;else absent">
+        <h2>Фермерское хозяйство: <strong [routerLink]="['/farmer/' + farmer?.id]" class="farmer-link"> {{farmer?.name}}</strong></h2>
+        <table class="goods-table">
+          <tbody>
+            <tr *ngFor="let good of goodsInCart; let i = index">
+              <td>{{i + 1}}</td>
+              <td><img [src]="good.thumb" width="75" alt=""></td>
+              <td>{{good.name}}</td>
+              <td>{{good.quantity + ' ' + good.measure}}</td>
+              <td>{{good.price}}&#8381;</td>
+              <td><strong [ngStyle]="{textDecoration: 'underline', color: 'var(--ion-color-primary)', cursor: 'pointer'}" (click)="editQuantity(good)">x {{good.quantityInCart}}</strong></td>
+              <td>{{good.price * good.quantityInCart}}&#8381;</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="6">Итого</td>
+              <td>{{sum}}&#8381;</td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button color="danger" fill="outline" (click)="clear()" class="buttons">
+              <ion-icon name="trash" slot="start"></ion-icon>
+              Очистить корзину
+            </ion-button>
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ion-button color="primary" fill="outline" [routerLink]="['/cart/order-form']" class="buttons">
+              <ion-icon name="done-all" slot="start"></ion-icon>
+              Подтвердить заказ
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ng-template #absent>
+  <h2 class="empty">Нет товаров в корзине</h2>
+</ng-template>

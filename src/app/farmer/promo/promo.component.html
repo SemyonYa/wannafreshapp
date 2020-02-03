@@ -1,3 +1,16 @@
-<p>
-  promo works!
-</p>
+<ion-content text-center>
+  <ion-toolbar> 
+    <ion-buttons slot="end"> 
+      <ion-button color="primary" (click)="close()">
+        <ion-icon size="large" name="close-circle-outline" slot="icon-only"></ion-icon>
+      </ion-button>  
+    </ion-buttons>  
+  </ion-toolbar>
+  <h2>{{promo.title}}</h2>
+  <p><strong><em>{{promo.subtitle}}</em></strong></p>
+  <p>{{promo.description}}</p>
+  <img [src]="promo.img" alt="" width="100%">
+  <ion-button color="primary" (click)="close()" expand="full" fill="outline"> 
+    <ion-icon name="close-circle-outline" slot="start"></ion-icon>
+    Закрыть </ion-button>
+</ion-content>

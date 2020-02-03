@@ -1,0 +1,61 @@
+ion-content {
+
+}
+
+.wrap {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    &>* {
+        flex-basis: 100%;
+    }
+}
+
+.img {
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-position: center center;
+    // border-radius: 15px;
+}
+
+.cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .minus,
+    .plus,
+    .counter {
+        width: 30px;
+        height: 30px;
+        background-color: var(--ion-color-primary);
+        color: var(--ion-color-primary-contrast);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+    }
+
+    .minus {
+        cursor: pointer;
+    }
+
+    .plus {
+        cursor: pointer;
+    }
+
+    .counter {
+        border-radius: 0;
+        background-color: transparent;
+        color: var(--ion-color-secondary);
+    }
+}
+
+.close-modal {
+    --border-width: 1px;
+}

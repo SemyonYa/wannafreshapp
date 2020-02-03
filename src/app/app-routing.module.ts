@@ -6,10 +6,14 @@ const routes: Routes = [
   { 
     path: 'home', 
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule) },
-  {
-    path: 'cart',
-    loadChildren: () => import('./cart/cart.module').then(m => m.CartPageModule)
-  },
+  // {
+  //   path: 'cart',
+  //   loadChildren: () => import('./cart/cart.module').then(m => m.CartPageModule)
+  // },
+  // {
+  //   path: 'search',
+  //   loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
+  // },
   // {
   //   path: 'farmer',
   //   loadChildren: () => import('./farmer/farmer.module').then( m => m.FarmerPageModule)

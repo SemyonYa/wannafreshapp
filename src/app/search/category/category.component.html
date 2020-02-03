@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-buttons slot="start">
+    <ion-back-button color="primary"></ion-back-button>
+  </ion-buttons>
+  <div class="category">
+    <div class="category-img" [ngStyle]="{backgroundImage: 'url(' + category?.img + ')'}"></div>
+    <h3>{{category?.name}}</h3>
+  </div>
+  <div class="segment">
+    <ion-segment (ionChange)="toggleView($event)">
+      <ion-segment-button value="farmers" checked>
+        <ion-label>Фермерские хозяйства</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="promos">
+        <ion-label>Акции</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+</ion-header>
+<ion-content>
+  <!-- FARMERS -->
+  <div class="farmers-block" *ngIf="view === 'farmers'" text-center @blockAnimation>
+    <div class="farmers" *ngIf="farmers.length > 0;else nothing">
+      <div class="farmers-item" *ngFor="let farmer of farmers" [routerLink]="['/farmer/' + farmer.id]">
+        <div class="farmers-item-img" [ngStyle]="{backgroundImage: 'url(' + farmer.img + ')'}"></div>
+        <h4>{{farmer.name}}</h4>
+      </div>
+    </div>
+  </div>
+  <!-- PROMOS -->
+  <div class="promos-block" *ngIf="view === 'promos'" text-center @blockAnimation>
+    <div class="promos" *ngIf="promos.length > 0;else nothing">
+      <div class="promos-item" *ngFor="let promo of promos" title="Перейти в каталог {{promo.farmerName}}">
+        <div class="promos-item-img" [ngStyle]="{backgroundImage: 'url(' + promo.thumb + ')'}" (click)="showPromo(promo)"></div>
+        <h4 (click)="showPromo(promo)">{{promo.title}}</h4>
+        <div [routerLink]="['/farmer/' + promo.farmerId]" class="promos-item-farmer">
+          <div [ngStyle]="{backgroundImage: 'url(' + promo.farmerThumb + ')'}" class="promos-item-farmer-img"></div>
+          <h6>{{promo.farmerName}}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ng-template #nothing>
+  <h3 *ngIf="view === 'promos'">Нет акций, относящихся к данной категории товаров!</h3>
+  <h3 *ngIf="view === 'farmers'">Нет фермерских хозяйств, продающих товары данной категории!</h3>
+</ng-template>

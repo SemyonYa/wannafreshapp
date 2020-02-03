@@ -1,0 +1,48 @@
+<ion-content>
+  <div class="wrap">
+    <div class="inner">
+      <ion-card text-center>
+        <ion-card-header>
+          <ion-card-title>Заказ</ion-card-title>
+          <ion-card-subtitle>Необходимо заполнить форму для отправления заказа</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <form [formGroup]="form" (ngSubmit)="submit()">
+            <ion-item lines="full"> 
+              <ion-label color="primary" position="stacked"> Ваше имя </ion-label>
+              <ion-input type="text" formControlName="name" maxLength="25" clearInput="true">  </ion-input>
+            </ion-item>
+            <ion-item lines="full"> 
+              <ion-label color="primary" position="stacked"> Телефон </ion-label>
+              <div class="tel">
+                <span>+7</span>
+                <ion-input type="tel" formControlName="phone" maxLength="10" minLength="10" clearInput="true">  </ion-input>
+              </div>
+            </ion-item>
+            <ion-item lines="full"> 
+              <ion-label color="primary" position="stacked"> E-mail </ion-label>
+              <ion-input type="email" formControlName="email" maxLength="40" clearInput="true">  </ion-input>
+            </ion-item>
+            <ion-item lines="full"> 
+              <ion-label color="primary" position="stacked"> Адрес </ion-label>
+              <ion-textarea type="text" formControlName="address" maxLength="100">  </ion-textarea>
+            </ion-item>
+            <ion-item lines="full"> 
+              <ion-label color="primary" position="stacked"> Пожелания </ion-label>
+              <ion-textarea type="text" formControlName="description" maxLength="100">  </ion-textarea>
+            </ion-item>
+            <ion-toolbar> 
+              <ion-buttons slot="end"> 
+                <input type="submit" #submitBtn [ngStyle]="{display: 'none'}">
+                <ion-button color="primary" (click)="submitBtn.click()" [disabled]="form.invalid">
+                  Подтвердить
+                  <ion-icon name="done-all" slot="end"></ion-icon>
+                </ion-button>  
+              </ion-buttons>  
+            </ion-toolbar>
+          </form>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

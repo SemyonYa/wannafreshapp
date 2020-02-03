@@ -1,9 +1,22 @@
 <ion-content *ngIf="farmer;else loading">
-  goods works! ({{farmer.id}})
   <div class="category-block" *ngFor="let category of farmer.categories">
-    <h3 [ngStyle]="{color: 'green'}">{{category.name}}</h3>
+    <h3 [ngStyle]="{color: 'green'}">{{category.name}}<img [src]="category.img" width="50" alt=""> </h3>
     <div class="category-block-goods">
-      <div class="category-block-goods-item" *ngFor="let good of category.goods">{{good.name}}</div>
+      <ion-card *ngFor="let good of category.goods" text-center>
+        <div class="img" [ngStyle]="{backgroundImage: 'url(' + good.thumb + ')'}"></div>
+        <ion-card-header>
+          <div class="cart">
+            <div class="minus" (click)="toCart(good, 'minus')">-</div>
+            <div class="counter">{{good.quantityInCart}}</div>
+            <div class="plus" (click)="toCart(good, 'plus')">+</div>
+          </div>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-card-title>{{good.name}}</ion-card-title>
+          <ion-card-subtitle><b>{{good.price}} руб.</b> за <b>{{good.quantity + ' ' + good.measure}}</b></ion-card-subtitle>
+          <h4 text-center (click)="showGood(good)">Подробнее...</h4>
+        </ion-card-content>
+      </ion-card>
     </div>
   </div>
 </ion-content>

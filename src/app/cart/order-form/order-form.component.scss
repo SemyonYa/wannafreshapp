@@ -1,0 +1,27 @@
+.wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .inner {
+        width: 100%;
+        max-width: 600px;
+    }
+}
+
+.tel {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+    &>span {
+        width: 50px;
+        font-weight: 600;
+        color: #999;
+    }
+
+    ion-input {
+        width: calc(100% - 50px);
+    }
+}

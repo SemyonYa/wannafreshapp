@@ -1,0 +1,50 @@
+.wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .inner {
+        width: 100%;
+        max-width: 1000px;
+        padding: 20px;
+    }
+}
+
+.cart-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.farmer-link {
+    color: var(--ion-color-primary);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.goods-table {
+    width: 100%;
+
+    img {
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, .25);
+        border-radius: 4px;
+    }
+
+    td {
+        text-align: left;
+    }
+}
+
+.buttons {
+    --border-width: 1px;
+    // --border-radius: 7px;
+}
+
+.empty {
+    border: solid 1px var(--ion-color-warning);
+    border-radius: 10px;
+    padding: 20px;
+    background-color: rgba(var(--ion-color-warning-rgb), .1);
+}

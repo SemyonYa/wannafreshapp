@@ -12,8 +12,4 @@ export class HelpMe {
     static getCategoryImg(img: string) {
         return img ? environment.host + '/frontend/web/img/category_icons/' + img : '/assets/icon/logo-ico.svg';
     }
-
-    static getVideo(url: string, farmerId: string) {
-        return url + farmerId;
-    }
 }

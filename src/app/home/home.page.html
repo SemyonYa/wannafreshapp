@@ -9,14 +9,37 @@
 
   <!-- SEARCH BLOCK -->
   <div class="search-block">
-    <ion-input placeholder="Поиск по товарам и фермерским хозяйствам" text-center></ion-input>
-    <div class="result"></div>
+    <ion-input placeholder="Найти фермерское хозяйство..." text-center (ionChange)="searching($event)"
+      (keyup.enter)="searchingOut($event)" (keyup.escape)="searchHide()" debounce="300"></ion-input>
+    <div class="result">
+      <div class="result-inner" *ngIf="searchingIsActive">
+        <div class="nothing" *ngIf="searchingResult.length == 0">
+          <h2>Не найдено соответствий!</h2>
+        </div>
+        <div class="something" *ngIf="searchingResult.length > 0">
+          <div class="searched-farmer" *ngFor="let farmer of searchingResult" [routerLink]="['/farmer/' + farmer.id]">
+            <div class="searched-farmer-img" [ngStyle]="{backgroundImage: 'url(' + farmer.thumb + ')'}"></div>
+            <div class="searched-farmer-name">{{farmer.name}}</div>
+          </div>
+        </div>
+        <div class="searching-hide" (click)="searchHide()">Закрыть</div>
+      </div>
+    </div>
   </div>
 
   <!-- FARMERS RIBBON -->
   <div class="farmers-ribbon">
     <h3 text-center>Фермерские хозяйства</h3>
     <ion-slides mode="ios" pager="true" [options]="{slidesPerView: 4}" class="visible-4">
+      <ion-slide *ngIf="farmers.length === 0">
+        <ion-card>
+          <ion-card-content>
+            <div class="farmer-empty-card">
+              Загрузка списка фермерских хозяйств...
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
       <ion-slide *ngFor="let farmer of farmers">
         <ng-container *ngTemplateOutlet="farmerItem; context: {farmerId: farmer}"></ng-container>
       </ion-slide>
@@ -36,29 +59,47 @@
         <ng-container *ngTemplateOutlet="farmerItem; context: {farmerId: farmer}"></ng-container>
       </ion-slide>
     </ion-slides>
-    <h4 class="view-all-farmers" [routerLink]="['/farmer']">Посмотреть все...</h4>
+    <h4 class="view-all-farmers" [routerLink]="['/search/farmers']">Посмотреть все...</h4>
   </div>
 
   <!-- PROMOS RIBBON -->
   <div class="promos-ribbon">
-    <h3 text-center>
-      Акции
-      <ion-icon name="gift"></ion-icon>
-    </h3>
-    <ion-slides pager="true" [options]="{slidesPerView: 5}">
-      <ion-slide *ngFor="let promo of promos">
-        <div class="promos-item" [ngStyle]="{backgroundImage: 'url(' + promo.img + ')'}">
-          <span> {{promo.title}} </span>
+    <div class="promos-ribbon-title" text-center>
+      <h3>
+        Акции ({{promos.length}})
+      </h3>
+      <div class="promo-icon"></div>
+    </div>
+    <div class="promos-ribbon-list">
+      <div class="promos-ribbon-list-item" *ngFor="let promo of promos" text-center>
+        <div (click)="showPromo(promo)" class="promos-ribbon-list-item-img"
+          [ngStyle]="{backgroundImage: 'url(' + promo.thumb + ')'}"></div>
+        <div class="promos-ribbon-list-item-farmer" [routerLink]="['/farmer/' + promo.farmerId]">
+          <div class="promos-ribbon-list-item-farmer-img"
+            [ngStyle]="{backgroundImage: 'url(' + promo.farmerThumb + ')'}"></div>
+          <p>{{promo.farmerName}}</p>
         </div>
-      </ion-slide>
-    </ion-slides>
+        <h6 (click)="showPromo(promo)">{{promo.title}}</h6>
+      </div>
+      <div class="promos-ribbon-list-item" *ngFor="let promo of promos" text-center>
+        <div (click)="showPromo(promo)" class="promos-ribbon-list-item-img"
+          [ngStyle]="{backgroundImage: 'url(' + promo.thumb + ')'}"></div>
+        <div class="promos-ribbon-list-item-farmer" [routerLink]="['/farmer/' + promo.farmerId]">
+          <div class="promos-ribbon-list-item-farmer-img"
+            [ngStyle]="{backgroundImage: 'url(' + promo.farmerThumb + ')'}"></div>
+          <p>{{promo.farmerName}}</p>
+        </div>
+        <h6 (click)="showPromo(promo)">{{promo.title}}</h6>
+      </div>
+    </div>
   </div>
 
   <!-- CATEGORY BLOCK -->
   <div class="categories-wrap">
     <h3>Поиск фермерских хозяйств и акций по категории продуктов</h3>
     <div class="categories">
-      <div class="categories-item" *ngFor="let category of categories$.value">
+      <div class="categories-item" *ngFor="let category of categories$.value"
+        [routerLink]="['/search/category/' + category.id]">
         <div class="categories-item-img" [ngStyle]="{backgroundImage: 'url(' + category.img + ')'}"></div>
         <h4>{{category.name}}</h4>
       </div>
@@ -68,9 +109,13 @@
   <!-- FOOTER -->
   <div class="home-footer">
     <div class="home-footer-inner">
-      <h4>Footer Info</h4>
-      <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti et possimus similique, voluptates neque libero
-      eos voluptas quibusdam nulla dicta enim assumenda harum esse aliquid rem repellendus odio. Nam, nostrum.</p>
+      <h3>Полезная информация</h3>
+      <h5 (click)="showForFarmer()">Фермерам</h5>
+      <h5 (click)="showTerms()">Условия доставки и оплаты</h5>
+      <h5 (click)="showContact()">Контакты</h5>
+      <hr />
+      <h4>Доставка натуральных продуктов c фермерских хозяйств</h4>
+      <h2>© Wanna Fresh 2020</h2>
     </div>
   </div>
 </ion-content>
@@ -78,10 +123,26 @@
 <!-- TEMPLATES -->
 <ng-template let-farmer="farmerId" #farmerItem>
   <ion-card text-center class="farmer-template-card" [routerLink]="['/farmer/' + farmer.id]">
-    <img [src]="farmer.img" alt="">
+    <div class="farmer-template-card-img" [ngStyle]="{backgroundImage: 'url(' + farmer.img + ')'}"></div>
     <ion-card-header>
       <ion-card-title>{{farmer.name}}</ion-card-title>
-      <ion-card-subtitle><b *ngIf="farmer.minCost"> {{farmer.minCost}} руб. </b></ion-card-subtitle>
+      <ion-card-subtitle>
+        <p>Минимальный заказ: </p>
+        <p>
+          <strong *ngIf="farmer.minCost" [ngStyle]="{color: 'var(--ion-color-primary)'}">
+            {{farmer.minCost}} руб.
+          </strong>
+        </p>
+      </ion-card-subtitle>
     </ion-card-header>
   </ion-card>
+</ng-template>
+
+<ng-template let-promo="promo" #promoItem>
+  <div class="promos-item">
+    <div class="promos-item-inner" [ngStyle]="{backgroundImage: 'url(' + promo.img + ')'}" (click)="showPromo(promo)">
+      <span> {{promo.title}} </span>
+    </div>
+    <h5 [ngStyle]="{width: '100%'}" [routerLink]="['/farmer/' + promo.farmerId]">{{promo.farmerName}}</h5>
+  </div>
 </ng-template>

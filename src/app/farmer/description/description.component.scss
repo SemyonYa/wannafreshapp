@@ -1,0 +1,43 @@
+ion-content {
+    --padding-bottom: 50px;
+
+    .wrap {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .inner {
+            width: 100%;
+            max-width: 1000px;
+            padding: 0 10px;
+        }
+    }
+
+    h2 {}
+
+    img {
+        border-radius: 10px;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, .4);
+    }
+
+    h4 {
+        padding: 15px;
+        border: solid 1px var(--ion-color-primary);
+        border-radius: 10px;
+    }
+
+    .about {
+        padding: 15px;
+        border: solid 1px var(--ion-color-primary);
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+    
+    .delivery {
+        padding: 15px;
+        border: solid 1px var(--ion-color-primary);
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+}

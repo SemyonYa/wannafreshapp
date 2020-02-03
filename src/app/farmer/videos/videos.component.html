@@ -1,3 +1,19 @@
-<p>
-  videos works!
-</p>
+<ion-content *ngIf="farmer;else loading" text-center>
+  <div *ngIf="farmer.videos.length > 0;else nothing" class="inner">
+    <h2>Видео</h2>
+    <div *ngFor="let video of farmer.videos">
+      <h4>{{video.title}}</h4>
+      <p>{{video.description}}</p>
+      <div [innerHTML]="getSafeHtml(video.url)" class="video-frame"></div>
+    </div>
+  </div>
+</ion-content>
+
+<ng-template #loading>
+  <div class="alert">loading...</div>
+</ng-template>
+
+
+<ng-template #nothing>
+  <h3 class="nothing">Пока нет загруженного видео...</h3>
+</ng-template>

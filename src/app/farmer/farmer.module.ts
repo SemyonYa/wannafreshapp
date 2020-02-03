@@ -33,6 +33,10 @@ import { DescriptionComponent } from './description/description.component';
     PromoComponent,
     PromosComponent,
     VideosComponent
+  ],
+  entryComponents: [
+    GoodComponent,
+    PromoComponent
   ]
 })
 export class FarmerPageModule {}

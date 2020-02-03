@@ -17,13 +17,37 @@
     // --ion-font-family: 'Cormorant Unicase', serif;
 }
 
+
+// TITLE
+.main-title {
+    padding-top: 10px;
+    background-color: #fefefe;
+}
+
 .title-block {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    padding: 0 10px;
+
+    .home {
+        width: 50px;
+        ion-icon {
+            font-size: 30px;
+            cursor: pointer;
+        }
+    }
+
+    ion-button {
+        position: fixed;
+        // height: 50px;
+        // width: 50px;
+        top: 5px;
+        left: 5px;
+    }
 
     .cart {
-        position: fixed;
+        // position: fixed;
         height: 50px;
         width: 50px;
         top: 5px;
@@ -33,6 +57,7 @@
         background-repeat: no-repeat;
         background-position: center center;
         justify-self: end;
+        cursor: pointer;
 
         .counter {
             position: absolute;
@@ -49,12 +74,76 @@
             box-shadow: 0 0 5px 0 rgba(0, 0, 0, .4);
         }
     }
+
+    .logo {
+        cursor: pointer;
+        height: 50px;
+    }
 }
 
+
+// FARMER
 .farmers-ribbon {
     .swiper-pagination-bullet {
         width: 12px;
         height: 12px;
         // opacity: .4;
+    }
+}
+
+// .text-center {
+//     text-align: center;
+// }
+
+// GOOD
+.modal-good {
+    --border-radius: 15px;
+    --max-width: 400px;
+    // --max-height: 10000px;
+    --height: 80vh;
+}
+
+.video-frame {
+    // max-width: 95%;
+    iframe {
+        box-shadow: 0 0 10px 0px rgba(0, 0, 0, .4);
+        border-radius: 10px;
+        max-width: 95vw;
+        max-height: 45vw;
+    }
+}
+
+// CART
+.edit-quantity-modal {
+    --width: 300px;
+    --border-radius: 15px;
+}
+
+// PROMO
+.promo-modal {
+    // --width: 400px;
+    --border-radius: 15px;
+}
+
+// INFO
+.info-modal {
+    // --width: 400px;
+    --border-radius: 15px;
+
+    .modal-close-btn {
+        color: var(--ion-color-primary);
+        cursor: pointer;
+        font-size: 36px;
+    }
+
+    h3 {
+        margin: 0;
+        text-align: center;
+        color: var(--ion-color-primary);
+    }
+
+    .text {
+        text-align: justify;
+        padding: 20px;
     }
 }

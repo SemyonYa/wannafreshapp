@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../_services/data.service';
-import { CartService } from '../_services/cart.service';
 import { Farmer } from '../_models/farmer';
 import { ActivatedRoute } from '@angular/router';
-import { Good } from '../_models/good';
 
 @Component({
   selector: 'app-farmer',
@@ -13,8 +11,7 @@ import { Good } from '../_models/good';
 export class FarmerPage implements OnInit {
   id: number;
   farmer: Farmer;
-  // goodCount: number = 100;
-  constructor(private dataService: DataService, private cartService: CartService, private activatedRoute: ActivatedRoute) { }
+  constructor(private dataService: DataService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.params.id;

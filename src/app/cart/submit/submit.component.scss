@@ -1,0 +1,11 @@
+.wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .inner {
+        width: 100%;
+        max-width: 600px;
+    }
+}
